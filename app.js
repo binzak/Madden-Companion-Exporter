@@ -12,7 +12,7 @@ const serviceAccount = require("./firebase-info.json");
 // TODO: Enter your database url from firebase
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://joxmad1.firebaseio.com/"
+  databaseURL: "https://exportdatamd.firebaseio.com/"
 });
 
 // Setup
