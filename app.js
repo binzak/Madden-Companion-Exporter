@@ -112,6 +112,7 @@ app.post('/:username/:platform/:leagueId/freeagents/roster', (req, res) => {
 });
 
 app.post('/:username/:platform/:leagueId/team/:teamId/roster', (req, res) => {
+	console.log(req)
   const db = admin.database();
   const ref = db.ref();
   const { params: { username, leagueId, teamId }, body: { rosterInfoList } } = req;
