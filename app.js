@@ -24,10 +24,10 @@ if (process.env.NODE_ENV === 'production') {
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
-// app.post('*', (req, res) => {
-//   console.log(req.url);
-//   res.sendStatus(200);
-// });
+app.post('*', (req, res) => {
+  console.log(req.url);
+  res.sendStatus(200);
+});
 
 app.post('/:username/:platform/:leagueId/leagueteams', (req, res) => {
   const db = admin.database();
@@ -113,6 +113,7 @@ app.post('/:username/:platform/:leagueId/freeagents/roster', (req, res) => {
 
 app.post('/:username/:platform/:leagueId/team/:teamId/roster', (req, res) => {
 	console.log(req)
+	console.log("DANS LA BASE")
   const db = admin.database();
   const ref = db.ref();
   const { params: { username, leagueId, teamId }, body: { rosterInfoList } } = req;
