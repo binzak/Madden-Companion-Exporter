@@ -125,7 +125,7 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/schedules', 
   const ref = db.ref();
   const { params: { username } } = req;  
   const {platform, leagueId, weekType, weekNumber, dataType} = req.params;
-  const dataRef = ref.child(`${username}/data/week/${weekType}/${weekNumber}/${dataType}`);
+  const dataRef = ref.child(`${username}/data/week/${weekType}/${weekNumber}/schedules`);
   const {body: {gameScheduleInfoList2}} = req;
 
   res.sendStatus(202);
@@ -138,6 +138,55 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/schedules', 
 
 
 //ROBIN
+
+
+
+//ROBIN
+
+
+app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/schedules', (req, res) => {
+  const db = admin.database();
+  const ref = db.ref();
+  const { params: { username } } = req;  
+  const {platform, leagueId, weekType, weekNumber, dataType} = req.params;
+  const dataRef = ref.child(`${username}/data/week/${weekType}/${weekNumber}/schedules2`);
+  const {body: {gameScheduleInfoList3}} = req;
+
+  res.sendStatus(202);
+  dataRef.set({
+    gameScheduleInfoList3
+  });
+});
+
+
+
+
+//ROBIN
+
+
+
+//ROBIN
+
+
+app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/schedules3', (req, res) => {
+  const db = admin.database();
+  const ref = db.ref();
+  const { params: { username } } = req;  
+  const {platform, leagueId, weekType, weekNumber, dataType} = req.params;
+  const dataRef = ref.child(`${username}/data/week/${weekType}/${weekNumber}/schedules`);
+  const {body: {gameScheduleInfoList4}} = req;
+
+  res.sendStatus(202);
+  dataRef.set({
+    gameScheduleInfoList4
+  });
+});
+
+
+
+
+//ROBIN
+
 
 // ROSTERS
 
