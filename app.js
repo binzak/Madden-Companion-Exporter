@@ -120,7 +120,7 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:dataType', 
 //ROBIN
 
 
-app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/schedules', (req, res) => {
+app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:schedules', (req, res) => {
   const db = admin.database();
   const ref = db.ref();
   const { params: { username } } = req;  
@@ -144,12 +144,12 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/schedules', 
 //ROBIN
 
 
-app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/schedules', (req, res) => {
+app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:schedules', (req, res) => {
   const db = admin.database();
   const ref = db.ref();
   const { params: { username } } = req;  
   const {platform, leagueId, weekType, weekNumber, dataType} = req.params;
-  const dataRef = ref.child(`${username}/data/week/${weekType}/${weekNumber}/schedules2`);
+  const dataRef = ref.child(`${username}/data/week/${weekType}/${weekNumber}/:schedules2`);
   const {body: {gameScheduleInfoList3}} = req;
 
   res.sendStatus(202);
@@ -168,7 +168,7 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/schedules', 
 //ROBIN
 
 
-app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/schedules3', (req, res) => {
+app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:schedules', (req, res) => {
   const db = admin.database();
   const ref = db.ref();
   const { params: { username } } = req;  
