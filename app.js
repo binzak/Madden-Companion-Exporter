@@ -95,10 +95,16 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:dataType', 
       dataRefB.set({
         gameScheduleInfoList
       });
+      dataRef.set({
+        gameScheduleInfoList
+      });
       break;
     case 'teamstats':
       const {body: {teamStatInfoList}} = req;
       dataRefB.set({
+        teamStatInfoList
+      });
+      dataRef.set({
         teamStatInfoList
       });
       break;
