@@ -81,13 +81,13 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:schedules',
   const ref = db.ref();
   const { params: { username } } = req;  
   const {platform, leagueId, weekType, weekNumber, schedules} = req.params;
-  const dataRef = ref.child(`${username}/data/week7/${weekType}/${weekNumber}/${schedules}`);
+  const dataRef = ref.child(`${username}/data/week8/${weekType}/${weekNumber}/${schedules}`);
 
   switch(schedules) {
     case 'schedules':
       const {body: {gameScheduleInfoList}} = req;
       dataRef.set({
-        gameScheduleInfoList
+        gameScheduleInfoListJustWeek
       });
       break;
   }
