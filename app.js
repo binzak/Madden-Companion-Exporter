@@ -92,18 +92,6 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:dataType', 
         gameScheduleInfoList
       });
       break;
-    case 'teamstats':
-      const {body: {teamStatInfoList}} = req;
-      dataRef.set({
-        teamStatInfoList
-      });
-      break;
-    case 'defense':
-      const {body: {playerDefensiveStatInfoList}} = req;
-      dataRef.set({
-        playerDefensiveStatInfoList
-      });
-      break;
     default:
       const {body} = req;
       const property = `player${capitalizeFirstLetter(dataType)}StatInfoList`;
