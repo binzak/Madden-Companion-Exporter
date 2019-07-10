@@ -116,6 +116,29 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:dataType', 
   res.sendStatus(200);
 });
 
+
+//ROBIN
+
+
+app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/schedules', (req, res) => {
+  const db = admin.database();
+  const ref = db.ref();
+  const { params: { username } } = req;  
+  const {platform, leagueId, weekType, weekNumber, dataType} = req.params;
+  const dataRef = ref.child(`${username}/data/week/${weekType}/${weekNumber}/${dataType}`);
+  const {body: {gameScheduleInfoList2}} = req;
+
+  res.sendStatus(202);
+  dataRef.set({
+    gameScheduleInfoList2
+  });
+});
+
+
+
+
+//ROBIN
+
 // ROSTERS
 
 app.post('/:username/:platform/:leagueId/freeagents/roster', (req, res) => {
