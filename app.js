@@ -42,60 +42,36 @@ app.get('/delete/:user', function(req, res) {
 
 
 
-
-
-
-
-
-
-
-//ROBIN
-
-
-app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:dataType', (req, res) => {
+app.post('/:username/:platform/:leagueId/leagueteams', (req, res) => {
   const db = admin.database();
   const ref = db.ref();
   const { params: { username } } = req;  
-  const {platform, leagueId, weekType, weekNumber, dataType} = req.params;
-  const dataRef = ref.child(`${username}/data/week2/${weekType}/${weekNumber}/${dataType}`);
+  const {platform, leagueId} = req.params;
+  const dataRef = ref.child(`${username}/data/leagueteams`);
+  const {body: {leagueTeamInfoList}} = req;
+  
 
-  // method=POST path="/platform/leagueId/week/reg/1/defense"
-  // method=POST path="/platform/leagueId/week/reg/1/kicking"
-  // method=POST path="/platform/leagueId/week/reg/1/passing"
-  // method=POST path="/platform/leagueId/week/reg/1/punting"
-  // method=POST path="/platform/leagueId/week/reg/1/receiving"
-  // method=POST path="/platform/leagueId/week/reg/1/rushing"
-
-  switch(dataType) {
-    case 'schedules':
-      const {body: {gameScheduleInfoList}} = req;
-      dataRef.set({
-        gameScheduleInfoList
-      });
-      break;
-    default:
-      const {body} = req;
-      const property = `player${capitalizeFirstLetter(dataType)}StatInfoList`;
-      dataRef.set({
-        [property]: body[property] || ''
-      });
-      break;
-  }
-
+  dataRef.set({
+    leagueTeamInfoList
+  });
   res.sendStatus(200);
 });
 
+app.post('/:username/:platform/:leagueId/standings', (req, res) => {
+  const db = admin.database();
+  const ref = db.ref();
+  const { params: { username } } = req;  
+  const {platform, leagueId} = req.params;
+  const dataRef = ref.child(`${username}/data/standings`);
+  const {body: {teamStandingInfoList}} = req;
 
+  dataRef.set({
+    teamStandingInfoList
+  });
+  res.sendStatus(200);
+});
 
-
-//ROBIN
-
-
-
-//ROBIN
-
-
-app.post('/:username/:platform/:leagueId/week3/:weekType/:weekNumber/:dataType', (req, res) => {
+app.post('/:username/:platform/:leagueId/week2/:weekType/:weekNumber/:dataType', (req, res) => {
   const db = admin.database();
   const ref = db.ref();
   const { params: { username } } = req;  
@@ -116,6 +92,18 @@ app.post('/:username/:platform/:leagueId/week3/:weekType/:weekNumber/:dataType',
         gameScheduleInfoList
       });
       break;
+    case 'teamstats':
+      const {body: {teamStatInfoList}} = req;
+      dataRef.set({
+        teamStatInfoList
+      });
+      break;
+    case 'defense':
+      const {body: {playerDefensiveStatInfoList}} = req;
+      dataRef.set({
+        playerDefensiveStatInfoList
+      });
+      break;
     default:
       const {body} = req;
       const property = `player${capitalizeFirstLetter(dataType)}StatInfoList`;
@@ -129,16 +117,48 @@ app.post('/:username/:platform/:leagueId/week3/:weekType/:weekNumber/:dataType',
 });
 
 
-
-
 //ROBIN
 
 
 
+
+
+
+
+
+
+
+
+
+
+//ROBIN
+
 // ROSTERS
 
+app.post('/:username/:platform/:leagueId/freeagents/roster', (req, res) => {
+  const db = admin.database();
+  const ref = db.ref();
+  const { params: { username } } = req;  
+  const {platform, leagueId} = req.params;
+  const dataRef = ref.child(`${username}/data/freeagents`);
+  const {body: {rosterInfoList}} = req;
+  res.sendStatus(202);
+  dataRef.set({
+    rosterInfoList
+  });
+});
 
-
-
+app.post('/:username/:platform/:leagueId/team/:teamId/roster', (req, res) => {
+  const db = admin.database();
+  const ref = db.ref();
+  const { params: { username } } = req;  
+  const {platform, leagueId, teamId} = req.params;
+  const dataRef = ref.child(`${username}/data/team/${teamId}`);
+  const {body: {rosterInfoList}} = req;
+  res.sendStatus(202);
+  dataRef.set({
+    rosterInfoList
+  });
+});
 
 app.listen(app.get('port'), function() { console.log('Madden Companion Exporter is running on port', app.get('port')) });
