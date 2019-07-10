@@ -82,7 +82,7 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:schedules',
   const ref = db.ref();
   const { params: { username } } = req;  
   const {platform, leagueId, weekType, weekNumber, schedules} = req.params;
-  const dataRef = ref.child(`${username}/data/JustSchedule/${weekType}/${weekNumber}/${schedules}`);
+  const dataRef = ref.child(`${username}/data/boilla/${weekType}/${weekNumber}/${schedules}`);
 
   switch(schedules) {
     case 'schedules':
