@@ -85,9 +85,9 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:schedules',
 
   switch(schedules) {
     case 'schedules':
-      const {body: {gameScheduleInfoList}} = req;
+      const {body: {gameScheduleInfoListJust}} = req;
       dataRef.set({
-        gameScheduleInfoListJustWeek
+        gameScheduleInfoList
       });
       break;
   }
