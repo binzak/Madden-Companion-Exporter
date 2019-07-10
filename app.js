@@ -74,51 +74,13 @@ app.post('/:username/:platform/:leagueId/standings', (req, res) => {
 
 
 
-
-//ROBIN
-
-app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:schedules', (req, res) => {
-  const db = admin.database();
-  const ref = db.ref();
-  const { params: { username } } = req;  
-  const {platform, leagueId, weekType, weekNumber, schedules} = req.params;
-  const dataRef = ref.child(`${username}/data/boilla/${weekType}/${weekNumber}/${schedules}`);
-
-  switch(schedules) {
-    case 'schedules':
-      const {body: {gameScheduleInfoList}} = req;
-      dataRef.set({
-        gameScheduleInfoList
-      });
-      break;
-  }
-
-  res.sendStatus(200);
-});
-
-
-
-
-
-
-
-
-
-
-
-//ROBIN
-
-
-
-
-
-
 app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:dataType', (req, res) => {
   const db = admin.database();
   const ref = db.ref();
   const { params: { username } } = req;  
   const {platform, leagueId, weekType, weekNumber, dataType} = req.params;
   const dataRef = ref.child(`${username}/data/week/${weekType}/${weekNumber}/${dataType}`);
+  const dataRefB = ref.child(`${username}/data/justSchedule/${weekType}/${weekNumber}/${dataType}`);
 
   // method=POST path="/platform/leagueId/week/reg/1/defense"
   // method=POST path="/platform/leagueId/week/reg/1/kicking"
@@ -130,7 +92,7 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:dataType', 
   switch(dataType) {
     case 'schedules':
       const {body: {gameScheduleInfoList}} = req;
-      dataRef.set({
+      dataRefB.set({
         gameScheduleInfoList
       });
       break;
