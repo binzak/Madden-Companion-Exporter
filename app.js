@@ -71,31 +71,7 @@ app.post('/:username/:platform/:leagueId/standings', (req, res) => {
   res.sendStatus(200);
 });
 
-// app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:dataType', (req, res) => {
-//   const db = admin.database();
-//   const ref = db.ref();
-//   const { params: { username } } = req;  
-//   const {platform, leagueId, weekType, weekNumber, dataType} = req.params;
-//   const dataRef = ref.child(`${username}/data/week2/${weekType}/${weekNumber}/${dataType}`);
 
-//   switch(dataType) {
-//     case 'schedules':
-//       const {body: {gameScheduleInfoList}} = req;
-//       dataRef.set({
-//         gameScheduleInfoList
-//       });
-//       break;
-//     default:
-//       const {body} = req;
-//       const property = `player${capitalizeFirstLetter(dataType)}StatInfoList`;
-//       dataRef.set({
-//         [property]: body[property] || ''
-//       });
-//       break;
-//   }
-
-//   res.sendStatus(200);
-// });
 
 
 //ROBIN
@@ -105,20 +81,13 @@ app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:schedules',
   const ref = db.ref();
   const { params: { username } } = req;  
   const {platform, leagueId, weekType, weekNumber, schedules} = req.params;
-  const dataRef = ref.child(`${username}/data/week2/${weekType}/${weekNumber}/${schedules}`);
+  const dataRef = ref.child(`${username}/data/week4/${weekType}/${weekNumber}/${schedules}`);
 
   switch(schedules) {
     case 'schedules':
       const {body: {gameScheduleInfoList}} = req;
       dataRef.set({
         gameScheduleInfoList
-      });
-      break;
-    default:
-      const {body} = req;
-      const property = `player${capitalizeFirstLetter(schedules)}StatInfoList`;
-      dataRef.set({
-        [property]: body[property] || ''
       });
       break;
   }
