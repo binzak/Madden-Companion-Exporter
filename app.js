@@ -71,12 +71,12 @@ app.post('/:username/:platform/:leagueId/standings', (req, res) => {
   res.sendStatus(200);
 });
 
-app.post('/:username/:platform/:leagueId/week2/:weekType/:weekNumber/:dataType', (req, res) => {
+app.post('/:username/:platform/:leagueId/week/:weekType/:weekNumber/:dataType', (req, res) => {
   const db = admin.database();
   const ref = db.ref();
   const { params: { username } } = req;  
   const {platform, leagueId, weekType, weekNumber, dataType} = req.params;
-  const dataRef = ref.child(`${username}/data/week/${weekType}/${weekNumber}/${dataType}`);
+  const dataRef = ref.child(`${username}/data/week2/${weekType}/${weekNumber}/${dataType}`);
 
   // method=POST path="/platform/leagueId/week/reg/1/defense"
   // method=POST path="/platform/leagueId/week/reg/1/kicking"
